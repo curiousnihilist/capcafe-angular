@@ -1,0 +1,71 @@
+<br>
+<div class="row">
+    <div class="col-md-12">
+      
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" >
+          <form (ngSubmit)="searchCafe()" #searchForm=ngForm>
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="searchText" #text=ngModel name="search_text" required>
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit" [disabled]="!searchCafe.valid">Search</button>
+              </div>
+            </div>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="searchradio" value="cafeId" [(ngModel)]="searchBy" #cafeId=ngModel required>Cafe Id
+              </label>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="searchradio" value="name" [(ngModel)]="searchBy" #name=ngModel>Name
+              </label>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-check-inline disabled">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="searchradio" value="location" [(ngModel)]="searchBy" #location=ngModel>location
+              </label>
+            </div>
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+          </form>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <br>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Cafe Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Avg. Price</th>
+        <th scope="col">Avg. Rating</th>
+        <th scope="col">Menu</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cafe of cafeList">
+        <th scope="row">{{cafe.cafeId}}</th>
+        <td>{{cafe.name}}</td>
+        <td>{{cafe.location}}</td>
+        <td>{{cafe.owner}}</td>
+        <td>{{cafe.avgPrice}}</td>
+        <td>{{cafe.avgRating}}</td>
+        <td><button type="button" class="btn btn-link">Menu</button></td>
+        <td><button type="button" class="btn btn-primary">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger">remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
