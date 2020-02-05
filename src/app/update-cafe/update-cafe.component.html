@@ -1,0 +1,105 @@
+<div class="card  " style="width: 60%; top: 50px; left: 300px;">
+    <div class="card-body mt-4">
+        <h3 class="text-center">UPDATE CAFE</h3>
+
+        <form #updateCafeForm=ngForm (ngSubmit)='updateCafe()'>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Cafe ID: {{cafe.cafeId}}</h5>
+                    <br>
+                    <div class="form-group">
+                        <label>Enter Name</label><br>
+                        <input type="text" class="form-control" [(ngModel)]=cafe.name #cname=ngModel name="cname"
+                            placeholder="Eg. Monginis" value="cafe.name" required>
+                        <span *ngIf="cname.touched && cname.invalid " class="alert-danger">
+                            Invalid Name!</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Enter Owner Name</label><br>
+                        <input type="text" class="form-control" [(ngModel)]=cafe.owner #owner=ngModel name="owner"
+                            placeholder="Eg. Akash Verma" value="cafe.owner" required>
+                        <span *ngIf="owner.touched && owner.invalid " class="alert-danger">
+                            Invalid Name!</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Enter Location</label><br>
+                        <select class="form-control" #category=ngModel [(ngModel)]=cafe.location name="location">
+                            <!-- <option value="" disable >--Select--</option> -->
+                            <option *ngFor="let loc of locations" [value]="loc">{{loc}}</option>
+                        </select>
+                    </div>
+
+                    <hr>
+                    <h4 style="text-align: center;">Add Menu</h4>
+
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sl No.</th>
+                                <th scope="col">Dish</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Price</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dish of menu; let idx = index">
+                                <th scope="row">{{idx+1}}</th>
+                                <td>{{dish.name}}</td>
+                                <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">{{dish.itemType}}
+                                </td>
+                                <td>Rs. {{dish.price}}</td>
+                                <td><button type="button" class="btn btn-danger btn-sm"
+                                        (click)="removeDish(idx)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+
+                    <div *ngFor="let c of carray">
+                        <div class="form-group">
+                            <label>Enter Dish Name</label><br>
+                            <input type="text" class="form-control" [(ngModel)]=foodItem.name #dname=ngModel
+                                name="dname" placeholder="Eg. Chicken Biryani">
+                            <span *ngIf="dname.dirty && dname.invalid" class="alert-danger">
+                                Invalid Name!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enter Dish Type</label><br>
+                            <select class="form-control" #itemType=ngModel [(ngModel)]=foodItem.itemType
+                                name="itemType">
+                                <option value="VEG">Veg</option>
+                                <option value="NON_VEG">Non Veg</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enter Price</label><br>
+                            <input type="number" class="form-control" [(ngModel)]=foodItem.price #price=ngModel
+                                name="price">
+                            <span *ngIf="price.dirty && price.invalid || foodItem.price < 5" class="alert-danger">
+                                Invalid Price!</span>
+                        </div>
+
+                        <p style="text-align: right;"><button type="button" class="btn btn-primary"
+                                (click)="addDish()">Add Menu</button>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <p style="text-align: center;"><button class="btn btn-success btn-lg" type="submit"
+                                [disabled]="!updateCafeForm.valid">Update Cafe</button></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

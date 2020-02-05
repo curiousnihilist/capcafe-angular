@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6" >
-          <form (ngSubmit)="searchCafe()" #searchForm=ngForm>
+          <form (ngSubmit)="searchCafe()" #searchCafe=ngForm>
             <div class="input-group">
               <input type="text" class="form-control" [(ngModel)]="searchText" #text=ngModel name="search_text" required>
               <div class="input-group-append">
@@ -42,7 +42,7 @@
 
   <br>
 
-  <table class="table table-bordered">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">Cafe Id</th>
@@ -55,17 +55,40 @@
         <th scope="col">Options</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let cafe of cafeList">
+    <tbody *ngFor="let cafe of cafeList">
+      <tr>
         <th scope="row">{{cafe.cafeId}}</th>
         <td>{{cafe.name}}</td>
         <td>{{cafe.location}}</td>
         <td>{{cafe.owner}}</td>
         <td>{{cafe.avgPrice}}</td>
         <td>{{cafe.avgRating}}</td>
-        <td><button type="button" class="btn btn-link">Menu</button></td>
-        <td><button type="button" class="btn btn-primary">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger">remove</button></td>
-      </tr>
+        <td><button type="button" class="btn btn-link" (click)="showMenu(cafe.cafeId)">Menu</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="updateCafe(cafe)">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" (click)="deleteCafe(cafe.cafeId)">remove</button></td>
+    </tr>
+    <tr *ngIf="!hideMenu && cafe.cafeId === currentId">
+      <th colspan="8">
+        <table class="table table-hover table-sm table-dark" >
+          <thead>
+            <tr>
+                <th scope="col">Sl No.</th>
+                <th scope="col">Dish</th>
+                <th scope="col">Type</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dish of cafe.menu; let idx = index">
+                <th scope="row">{{idx+1}}</th>
+                <td>{{dish.name}}</td>
+                <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">{{dish.itemType}}
+                </td>
+                <td>Rs. {{dish.price}}</td>
+            </tr>
+        </tbody>
+      </table>
+      </th>
+    </tr>
     </tbody>
   </table>
   
