@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ViewCafeComponent } from './view-cafe/view-cafe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateCafeComponent } from './update-cafe/update-cafe.component';
+import { CustHomeComponent } from './cust-home/cust-home.component';
+import { ViewMenuComponent } from './view-menu/view-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { UpdateCafeComponent } from './update-cafe/update-cafe.component';
     AdminHeaderComponent,
     AddCafeComponent,
     ViewCafeComponent,
-    UpdateCafeComponent
+    UpdateCafeComponent,
+    CustHomeComponent,
+    ViewMenuComponent
   ],
   imports: [
     BrowserModule,

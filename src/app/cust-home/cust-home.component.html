@@ -1,0 +1,79 @@
+<div class="container-fluid" style="background-image: url(../../assets/images/home.jpg); background-size: 100%; opacity: 0.7; height: 350px;">
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <br>
+        <br>
+        <div class="text-center">
+            <img src="../../assets/images/cafe.png" class="rounded" alt="Capgemini Cafe" >
+          </div>
+          <br>
+          <br>
+          <form #searchForm=ngForm (ngSubmit)="searchCafe()">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <select class="form-control" #clocation=ngModel [(ngModel)]=location name="location" required>
+                        <option *ngFor="let loc of locations" [value]="loc">{{loc}}</option>
+                    </select>
+                </div>
+                &nbsp;&nbsp;
+                <div class="col-sm-7">
+                  <input class="form-control" #cafeSearch=ngModel [(ngModel)]=searchText name="search" type="text" placeholder="Enter your favorite cafe or dishes.." required pattern="[a-z0-9A-Z]{3,}">
+                  <span *ngIf="cafeSearch.touched && cafeSearch.invalid " class="alert-danger">
+                    Invalid Input!</span>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success" [disabled]="!searchForm.valid">Search</button>
+                </div>
+              </div>
+          </form>
+    </div>
+</div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-6" *ngFor="let cafe of cafeList">
+      <div class="card" style="height: 160px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="../../assets/images/food.jpg" class="card-img" alt="..." style="height: 160px;">
+            </div>
+        
+        <div class="card-body">
+          <!-- <h5 class="card-title">{{cafe.name}}</h5> -->
+          <div class="row">
+              <div class="col-sm-4">
+                <h5 class="card-title" style="text-transform: uppercase; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: red;">{{cafe.name}}</h5>
+                <p>{{cafe.location}}</p>
+            </div>
+              <div class="col-sm-5"></div>
+              <div class="col-sm-3">
+                  <div class="row">
+                      <div class="col-sm-12">
+                        <p style="font-family: 'Courier New', Courier, monospace; font-size: 15px; text-align: end;">RATING: {{cafe.avgRating}}</p>
+                      </div>
+                  </div>
+                </div>
+                
+                <!-- <div class="card-text">
+                    <p>Cost for One: {{cafe.avgPrice}}</p>
+                </div> -->
+                  <!-- <p style="font-family: fantasy; font-size: smaller;">Rating: {{cafe.avgRating}}</p> -->
+                  <!-- <p style="font-family: fantasy;">Price for One: {{cafe.avgPrice}}</p> -->
+              
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+                Cost for One: {{cafe.avgPrice}}
+            </div>
+            <div class="col-sm-6">
+                <p style="text-align: end;"><button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">View Menu</button></p>
+            </div>
+        </div>
+    </div>
+          
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>

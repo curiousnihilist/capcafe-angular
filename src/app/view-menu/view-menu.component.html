@@ -1,0 +1,32 @@
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h3 style="text-align: center;">{{cafe.name}}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Sl No</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let dish of menu; let idx = index">
+                    <th scope="row">{{idx+1}}</th>
+                    <td>{{dish.name}}</td>
+                    <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">{{dish.itemType}}
+                    </td>
+                    <td>Rs. {{dish.price}}</td>
+                    <td><button type="button" class="btn btn-primary btn-sm">Add</button></td>
+                    
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

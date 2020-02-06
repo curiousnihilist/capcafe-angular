@@ -18,6 +18,7 @@ export class CafeService {
   private GET_CAFE_BY_DISH = "http://localhost:8880/cafe/get-by-dish";
   private GET_CAFE_BY_PRICE_RANGE = "http://localhost:8880/cafe/get-by-price-range";
   private GET_CAFE_BY_RATING_RANGE = "http://localhost:8880/cafe/get-by-rating-range";
+  private GET_FOOD_URI = "http://localhost:8880/cafe/get-food";
 
 
   constructor(private http:HttpClient) { }
@@ -60,6 +61,10 @@ export class CafeService {
 
   getCafeByPriceRange(min:number,max:number):Observable<Cafe[]>{
     return this.http.get<Cafe[]>(this.GET_CAFE_BY_PRICE_RANGE+"?min="+min+"&max="+max);
+  }
+
+  getFood(location:string, name:string):Observable<Cafe[]>{
+    return this.http.get<Cafe[]>(this.GET_FOOD_URI+"?location="+location+"&name="+name);
   }
 
 }

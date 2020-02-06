@@ -17,6 +17,7 @@ export class ViewCafeComponent implements OnInit {
   //private menuList:FoodItem[]=[];
   private hideMenu:boolean = true;
   private currentId:number = 0;
+  private searchText:string;
 
   constructor(private cafeService:CafeService, private dataService:DataService,private route:Router) { }
 
@@ -48,6 +49,31 @@ export class ViewCafeComponent implements OnInit {
   deleteCafe(cafeId:number){
     this.cafeService.deleteCafe(cafeId).subscribe();
     this.loadAllCafe();
+  }
+
+  searchByCafeId(){
+    this.cafeService.getCafeById(+this.searchText).subscribe(cafe => {this.cafeList = [];
+                                                                      this.cafeList.push(cafe)});
+
+  }
+
+  searchByCafeName(){
+    this.cafeService.getCafeByName(this.searchText).subscribe(cafes => {this.cafeList = cafes});
+  }
+
+  searchByCafeLocation(){
+    this.cafeService.getCafeByLocation(this.searchText).subscribe(cafes => {this.cafeList = cafes});
+  }
+  
+  searchCafe(){
+    console.log(1);
+    if(this.searchBy == "cafeId")
+      this.searchByCafeId();
+    if(this.searchBy == "name")
+      this.searchByCafeName();
+    if(this.searchBy == "location")
+      this.searchByCafeLocation();
+
   }
 
 }
