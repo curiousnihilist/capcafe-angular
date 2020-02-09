@@ -1,1 +1,3 @@
+<admin-header *ngIf="loginService.isAdminloggedin"></admin-header>
+<header *ngIf="!loginService.isAdminloggedin"></header>
 <router-outlet></router-outlet>

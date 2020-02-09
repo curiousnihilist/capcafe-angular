@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 well well-sm">
+            <br>
+            <legend style="text-align: center;"> Register</legend>
+            <form action="#" method="post" class="form" role="form"  #f="ngForm" (ngSubmit)="onSubmit()">
+           
+                <div class="form-group">
+                    <input required type="text" class="form-control" placeholder="Capgemini ID" id="capgeminiId" autofocus required pattern="[0-9]*"
+                      [(ngModel)]="employee.capgeminiId" name="capgeminiId" #capgeminiId="ngModel">
+                    <div [hidden]="capgeminiId.valid || capgeminiId.pristine" class="alert alert-danger">
+                      <div [hidden]="!capgeminiId.hasError('required')">ID is required</div>
+                      <div [hidden]="!capgeminiId.hasError('pattern')">Only numbers are allowed</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input required type="email" class="form-control" placeholder="Email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                      [(ngModel)]="employee.email" name="email" #email="ngModel">
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                      <div [hidden]="!email.hasError('required')">Email is required</div>
+                      <div [hidden]="!email.hasError('pattern')">Invalid Email</div>
+                    </div>
+                  </div>
+            
+            
+            <div class="form-group">
+                <input required type="text" class="form-control" placeholder="Name" id="name" required pattern="[a-zA-Z][a-zA-Z ]+"
+                  [(ngModel)]="employee.name" name="name" #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                  <div [hidden]="!name.hasError('required')">Name is required</div>
+                  <div [hidden]="!name.hasError('pattern')">Only alphabets are allowed</div>
+                </div>
+              </div>
+          
+              <!-- <div class="form-group">
+                <input required type="text" class="form-control" placeholder="Password" id="password" 
+                required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" minlength="8"
+                  [(ngModel)]="employee.password" name="password" #password="ngModel">
+                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                  <div [hidden]="!password.hasError('required')">Password is required</div>
+                  <div [hidden]="!mobileNo.hasError('minlength')">Password must be 8 characters or longer</div>
+                  <div [hidden]="!password.hasError('pattern')">Password must contain atleast one lowercase, one uppercase, one number and one special character</div>
+                </div>
+              </div> -->
+              <input required class="form-control" name="password"    placeholder="Password"     type="password"   ngModel />
+            
+            
+
+             
+
+            <label class="radio-inline">
+                <input type="radio" name="gender" id="inlineCheckbox1" value="male" ngModel />Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="gender" id="inlineCheckbox2" value="female" ngModel />Female
+            </label>
+            <br />
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.valid" >
+                SIGN UP</button>
+            </form>
+        </div>
+    </div>
+</div>

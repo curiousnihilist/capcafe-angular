@@ -42,11 +42,11 @@
         <div class="card-body">
           <!-- <h5 class="card-title">{{cafe.name}}</h5> -->
           <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-7">
                 <h5 class="card-title" style="text-transform: uppercase; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: red;">{{cafe.name}}</h5>
                 <p>{{cafe.location}}</p>
             </div>
-              <div class="col-sm-5"></div>
+              <div class="col-sm-2"></div>
               <div class="col-sm-3">
                   <div class="row">
                       <div class="col-sm-12">
@@ -62,12 +62,17 @@
                   <!-- <p style="font-family: fantasy;">Price for One: {{cafe.avgPrice}}</p> -->
               
           </div>
+          <br>
           <div class="row">
             <div class="col-sm-6">
-                Cost for One: {{cafe.avgPrice}}
+                Cost for One: Rs. {{cafe.avgPrice}}
             </div>
             <div class="col-sm-6">
-                <p style="text-align: end;"><button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">View Menu</button></p>
+                <p style="text-align: end;">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">Add Review</button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">View Menu</button>
+                </p>
             </div>
         </div>
     </div>
