@@ -24,8 +24,9 @@ export class SignupComponent implements OnInit {
     this.employee.name=this.signupForm.value.name;
     this.employee.password=this.signupForm.value.password;
     this.employee.gender=this.signupForm.value.gender; 
+    this.employee.wallet = 200;
     this.employeeService.signup(this.employee).subscribe((data)=>{
-      console.log(data);
+      alert("Thank Tou for registering "+this.employee.name+". Rs. 200 is added to your wallet!")
     })
     this.router.navigate(['/login']);
   }

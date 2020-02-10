@@ -11,12 +11,13 @@ import { SolveTicketComponent } from './solve-ticket/solve-ticket.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { RouteGaurdService } from './service/route-gaurd.service';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'cust-home',pathMatch:'full'},
   {path:'add-cafe',component:AddCafeComponent},
-  {path:'view-cafe',component:ViewCafeComponent},
+  {path:'view-cafe',component:ViewCafeComponent, canActivate: [RouteGaurdService]},
   {path:'update-cafe', component:UpdateCafeComponent},
   {path:'cust-home', component:CustHomeComponent},
   {path:'view-menu', component:ViewMenuComponent},

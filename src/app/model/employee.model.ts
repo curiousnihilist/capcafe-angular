@@ -10,6 +10,7 @@ export class Employee{
     public email:string;
     public password:string;
     public gender:string;
+    public wallet:number;
     public subscriptionDate:string;
     public ticketsRaised:Ticket[];
     public pastReviews:Review[];

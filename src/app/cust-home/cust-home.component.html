@@ -32,7 +32,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-6" *ngFor="let cafe of cafeList">
+    <div class="col-sm-6" *ngFor="let cafe of cafeList| paginate: { itemsPerPage: 10, currentPage: p }">
       <div class="card" style="height: 160px;">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -64,15 +64,15 @@
           </div>
           <br>
           <div class="row">
-            <div class="col-sm-6">
-                Cost for One: Rs. {{cafe.avgPrice}}
+            <div class="col-sm-5">
+                <p style="text-align: left;">Avg Price: Rs. {{cafe.avgPrice}}</p>
             </div>
-            <div class="col-sm-6">
-                <p style="text-align: end;">
+            <div class="col-sm-7">
+                
                   <button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">Add Review</button>
-                  &nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <button type="button" class="btn btn-primary btn-sm" (click)="viewMenu(cafe)">View Menu</button>
-                </p>
+               
             </div>
         </div>
     </div>
@@ -80,5 +80,12 @@
         </div>
       </div>
       <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </p>
     </div>
   </div>

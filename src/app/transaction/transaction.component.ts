@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../service/data.service';
+import { Router } from '@angular/router';
+import { Order } from '../model/order.model';
 
 @Component({
   selector: 'app-transaction',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
-  constructor() { }
+  private order:Order;
+
+  constructor(private dataService:DataService, private route:Router) { 
+    this.order = new Order();
+  }
 
   ngOnInit() {
+    this.dataService.orderData.subscribe(order => {this.order = order});
   }
+
+
 
 }

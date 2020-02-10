@@ -8,17 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class CafeService {
 
-  private ADD_CAFE_URI = "http://localhost:8880/cafe/add-cafe";
-  private UPDATE_CAFE_URI = "http://localhost:8880/cafe/update-cafe";
-  private DELETE_CAFE_URI = "http://localhost:8880/cafe/delete-cafe";
-  private GET_ALL_CAFE_URI = "http://localhost:8880/cafe/get-all-cafe";
-  private GET_CAFE_BY_ID = "http://localhost:8880/cafe/get-by-id";
-  private GET_CAFE_BY_NAME = "http://localhost:8880/cafe/get-by-name";
-  private GET_CAFE_BY_LOCATION = "http://localhost:8880/cafe/get-by-location";
-  private GET_CAFE_BY_DISH = "http://localhost:8880/cafe/get-by-dish";
-  private GET_CAFE_BY_PRICE_RANGE = "http://localhost:8880/cafe/get-by-price-range";
-  private GET_CAFE_BY_RATING_RANGE = "http://localhost:8880/cafe/get-by-rating-range";
-  private GET_FOOD_URI = "http://localhost:8880/cafe/get-food";
+  private ADD_CAFE_URI = "http://localhost:8888/front/add-cafe";
+  private UPDATE_CAFE_URI = "http://localhost:8888/front/update-cafe";
+  private DELETE_CAFE_URI = "http://localhost:8888/front/delete-cafe";
+  private GET_ALL_CAFE_URI = "http://localhost:8888/front/get-all-cafe";
+  private GET_CAFE_BY_ID = "http://localhost:8888/front/get-by-id";
+  private GET_CAFE_BY_NAME = "http://localhost:8888/front/get-by-name";
+  private GET_CAFE_BY_LOCATION = "http://localhost:8888/front/get-by-location";
+  private GET_CAFE_BY_DISH = "http://localhost:8888/front/get-by-dish";
+  private GET_CAFE_BY_PRICE_RANGE = "http://localhost:8888/front/get-by-price-range";
+  private GET_CAFE_BY_RATING_RANGE = "http://localhost:8888/front/get-by-rating-range";
+  private GET_FOOD_URI = "http://localhost:8888/front/get-food";
 
 
   constructor(private http:HttpClient) { }

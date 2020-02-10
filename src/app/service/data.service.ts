@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Cafe } from '../model/cafe.model';
 import { FoodItem } from '../model/fooditem.model';
+import { Order } from '../model/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ import { FoodItem } from '../model/fooditem.model';
 export class DataService {
 
   private cafeSource = new BehaviorSubject(new Cafe());
-  private menuSource:BehaviorSubject<FoodItem[]> = new BehaviorSubject([]);
+  private orderSource = new BehaviorSubject(new Order());
   data = this.cafeSource.asObservable();
-  menuData = this.menuSource.asObservable();
+  orderData = this.orderSource.asObservable();
 
 
   constructor() { }
@@ -20,7 +21,7 @@ export class DataService {
     this.cafeSource.next(cafe);
   }
 
-  updateMenu(menu:FoodItem[]){
-    this.menuSource.next(menu);
+  updateOrder(order:Order){
+    this.orderSource.next(order);
   }
 }

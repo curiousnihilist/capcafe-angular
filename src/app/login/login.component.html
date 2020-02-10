@@ -13,7 +13,7 @@
 			    	<form accept-charset="UTF-8" role="form"  (ngSubmit)="onSubmit()" #f=ngForm ngNativeValidate> 
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input required class="form-control" [(ngModel)]=login.capgeminiId #cid=ngModel name="capgeminiId" placeholder="Capgemini ID" type="text" required>
+			    		    <input required class="form-control" [(ngModel)]=login.capgeminiId #cid=ngModel name="capgeminiId" placeholder="Capgemini ID" type="number" required>
 						</div>
 						
 						
@@ -27,7 +27,7 @@
               		<br>
               		<br>
               	</div>	
-            	<label>New User?  <a href="/register">Register Here</a></label>
+            	<label>New User?  <a [routerLink]="['/signup']">Register Here</a></label>
 					</form>
                     <hr/>
                    

@@ -16,7 +16,8 @@
                             <div class="col-xs-4" style="padding-left: 20px;">
                                 <p style="font-weight: bold;">Location: <span
                                         style="font-weight: normal;">{{cafe.location}}</span></p>
-                                <p style="font-weight: bold;">Owner: <span style="font-weight: normal;">{{cafe.owner}}</span>
+                                <p style="font-weight: bold;">Owner: <span
+                                        style="font-weight: normal;">{{cafe.owner}}</span>
                                 </p>
                             </div>
                             <div class="col-xs-4" style="padding-left: 50px;">
@@ -26,6 +27,18 @@
                                         {{cafe.avgPrice}}</span></p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchDish()">Search Dish</button>
+                            </div>
+                            <input type="text" [(ngModel)]=dishName #dish=ngModel class="form-control form-control-sm" placeholder="Enter Dish.." aria-label=""
+                                aria-describedby="basic-addon1">
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -39,65 +52,76 @@
                                     <th>Price</th>
                                     <th style="text-align: center;">
                                         <!-- <button type="button" class="btn btn-lg btn-danger"  -->
-                                        <button type="button" class="btn btn-primary btn-sm" >
-                                    Cart <span class="badge badge-light">{{order.length}}</span>
-                                  </button>
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            Cart <span class="badge badge-light">{{order.length}}</span>
+                                        </button>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let dish of menu; let idx = index">
+                                <tr
+                                    *ngFor="let dish of menu | paginate: { itemsPerPage: 10, currentPage: p }; let idx = index ">
                                     <th scope="row">{{idx+1}}</th>
                                     <td>{{dish.name}}</td>
-                                    <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">{{dish.itemType}}
+                                    <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">
+                                        {{dish.itemType}}
                                     </td>
                                     <td>Rs. {{dish.price}}</td>
                                     <td>
                                         <div class="text-center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-secondary btn-sm" aria-label="Left Align"
-                                                    id="add-item" (click)="addItem(dish)"><i class="fas fa-plus"></i></button>
-                                                <button type="button" class="btn btn-secondary btn-sm" aria-label="Left Align"
-                                                    id="remove-item" (click)="removeItem(dish)"><i
-                                                        class="fas fa-minus"></i></button>
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                    aria-label="Left Align" id="add-item" (click)="addItem(dish)"><i
+                                                        class="fas fa-plus"></i></button>
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                    aria-label="Left Align" id="remove-item"
+                                                    (click)="removeItem(dish)"><i class="fas fa-minus"></i></button>
                                             </div>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <p style="text-align: center; font-size: smaller;">
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                        </p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-        
+
             </div>
         </div>
-        
+
 
     </div>
     <div class="col-md-4">
         <div class="card" style="right: 60px;">
-            <div class="cord-body" >
-                <ul class="list-group" style="right: 60px;" >
-                    <li class="list-group-item" >
+            <div class="cord-body">
+                <ul class="list-group" style="right: 60px;">
+                    <li class="list-group-item">
                         <h6 style="text-align: left;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> CART </h6>
                     </li>
                 </ul>
                 <ul class="list-group" style="right: 60px;">
                     <li class="list-group-item" *ngFor="let dish of order">
-                        <pre><i class="fa fa-caret-right" aria-hidden="true"></i>    <i class="fa fa-circle" [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }" aria-hidden="true" ></i>        {{dish.name}}                   Rs. {{dish.price}}</pre>
+                        <pre><i class="fa fa-caret-right" aria-hidden="true"></i>    <i class="fa fa-circle" [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }" aria-hidden="true" ></i>        {{dish.name}}             Rs. {{dish.price}}</pre>
                     </li>
-                  </ul>
+                </ul>
             </div>
-            <ul class="list-group" style="right: 60px;" >
-                <li class="list-group-item" >
-                    <pre>Total:                                          Rs. {{amount}}</pre>
-                    <p style="text-align:end ;"><button type="button" class="btn btn-primary">Go to Payment</button></p>
+            <ul class="list-group" style="right: 60px;">
+                <li class="list-group-item">
+                    <pre>Total:                                    Rs. {{amount}}</pre>
+                    <p style="text-align:end ;"><button type="button" class="btn btn-primary" (click)="payment()">Go to
+                            Payment</button></p>
                 </li>
             </ul>
-           
-            
+
+
         </div>
-        
+
     </div>
-    
+
 </div>

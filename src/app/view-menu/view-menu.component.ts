@@ -3,6 +3,9 @@ import { MenuService } from '../service/menu.service';
 import { DataService } from '../service/data.service';
 import { Cafe } from '../model/cafe.model';
 import { FoodItem } from '../model/fooditem.model';
+import { Router } from '@angular/router';
+import { LoginServiceService } from '../service/login-service.service';
+import { Order } from '../model/order.model';
 
 @Component({
   selector: 'app-view-menu',
@@ -12,11 +15,18 @@ import { FoodItem } from '../model/fooditem.model';
 export class ViewMenuComponent implements OnInit {
 
   amount:number=0;
+  private dishName:string;
   private cafe:Cafe;
   private menu:FoodItem[];
   private order:FoodItem[]=[];
+  private finalOrder:Order;
  
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, 
+              private rotue:Router,
+              private loginService:LoginServiceService) { 
+
+      this.finalOrder = new Order();
+  }
 
   ngOnInit() {
     this.dataService.data.subscribe(cafe => {this.cafe = cafe});
@@ -25,7 +35,6 @@ export class ViewMenuComponent implements OnInit {
 
   addItem(dish:FoodItem){
     this.order.push(dish);
-    console.log(this.order);
     this.amount += dish.price;
       
     
@@ -36,14 +45,22 @@ export class ViewMenuComponent implements OnInit {
       this.order.splice(this.order.indexOf(dish),1);
       this.amount -= dish.price; 
     }
-    
-    console.log(this.order);
   }
 
-  calculateAmount(){
-    // this.amount = this.order.;
+  payment(){
+    this.finalOrder.cafe = this.cafe;
+    this.finalOrder.employee = this.loginService.getEmpSession();
+    this.finalOrder.cart = this.order;
+    this.finalOrder.totalAmount = this.amount;
+    this.dataService.updateOrder(this.finalOrder);
+    this.rotue.navigate(['/transaction']);
+
+  }
+
+  searchDish(){
     
   }
+
 
   
 

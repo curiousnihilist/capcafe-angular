@@ -16,9 +16,9 @@ export class LoginServiceService {
   loggedInEmployee:Employee;
   loggedInAdmin:Admin;
 
-  private LOGIN_URI = "http://localhost:8881/capcafe/employeeLogin";
-  private SIGNUP_URI = "http://localhost:8881/capcafe/add";
-  private ADMIN_LOGIN_URI = "http://localhost:8881/capcafe/adminLogin";
+  private LOGIN_URI = "http://localhost:8888/front/employeeLogin";
+  private SIGNUP_URI = "http://localhost:8888/front/add";
+  private ADMIN_LOGIN_URI = "http://localhost:8888/front/adminLogin";
 
   constructor(private http:HttpClient) {
     this.loggedInEmployee = new Employee();
@@ -56,8 +56,12 @@ export class LoginServiceService {
     this.loggedInAdmin = new Admin();
   }
 
-  getSession():Employee{
+  getEmpSession():Employee{
     return this.loggedInEmployee;
+  }
+
+  getAdminSession():Admin{
+    return this.loggedInAdmin;
   }
 
 

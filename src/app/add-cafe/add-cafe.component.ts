@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cafe } from '../model/cafe.model';
 import { FoodItem } from '../model/fooditem.model';
 import { CafeService } from '../service/cafe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-cafe',
@@ -17,7 +18,7 @@ export class AddCafeComponent implements OnInit {
   private menu:FoodItem[]=[];
   private locations:string[]=["Pune","Mumbai","Bangalore","Kolkata","Gurugram"];
 
-  constructor(private cafeService:CafeService) {
+  constructor(private cafeService:CafeService, private route:Router) {
     this.cafe = new Cafe();
     this.addedCafe = new Cafe();
     this.foodItem = new FoodItem();
@@ -41,6 +42,8 @@ export class AddCafeComponent implements OnInit {
     this.cafe.menu = this.menu;
     this.cafeService.addCafe(this.cafe).subscribe( newCafe => {
       this.addedCafe = newCafe;
+      alert("Cafe:"+this.addedCafe.name+" is added!");
+      this.route.navigate(['/view-cafes']);
     })
   }
 }

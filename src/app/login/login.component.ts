@@ -17,11 +17,16 @@ export class LoginComponent implements OnInit {
     this.login = new Login();
   }
   ngOnInit() {
+
+    if(this.loginService.isUserloggedin)
+      this.router.navigate(['/cust-home']);
+    if(this.loginService.isAdminloggedin)
+      this.router.navigate(['/view-cafe']);
     
   }
 
   onSubmit(){
-  if(this.login.capgeminiId=="12345" && this.login.password=="1234"){
+  if(this.login.capgeminiId=="123456" ){
     this.loginService.loginAdmin(this.login).subscribe(admin => {if(admin !=null){
                                                                 this.loginService.createAdminSession(admin);
                                                                 alert("Login Successfull!");
