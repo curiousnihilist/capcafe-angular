@@ -4,6 +4,7 @@ import { Employee } from '../model/employee.model';
 import { Ticket } from '../model/ticket.model';
 import { LoginServiceService } from '../service/login-service.service';
 import { TransactionService } from '../service/transaction.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-raise-ticket',
@@ -16,7 +17,7 @@ export class RaiseTicketComponent implements OnInit {
   private ticket:Ticket;
   userDesk_form : FormGroup
 
-  constructor(private loginService:LoginServiceService, private transactionService:TransactionService) { 
+  constructor(private loginService:LoginServiceService, private transactionService:TransactionService, private route:Router) { 
     this.ticket = new Ticket();
   }
 
@@ -34,7 +35,8 @@ export class RaiseTicketComponent implements OnInit {
     this.ticket.employee = this.employee;
     this.ticket.query = this.userDesk_form.value.comments;
     this.transactionService.raiseTicket(this.ticket).subscribe(
-      data => {alert("Ticket Raised successfully!");}
+      data => {alert("Ticket Raised successfully!");
+               this.route.navigate(['/cust-home'])}
     );
 
   }

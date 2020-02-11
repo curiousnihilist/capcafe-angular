@@ -12,10 +12,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SolveTicketComponent implements OnInit {
 
   tickets : Ticket[];
+  private ticket:Ticket;
   private toSolve:boolean = false;
   singleTicket_form : FormGroup;
 
-  constructor(public route:Router,private ticketService:TransactionService) { }
+  constructor(public route:Router,private ticketService:TransactionService) { 
+    this.ticket = new Ticket();
+  }
 
   ngOnInit() {
     this.getAllQueries();
@@ -30,27 +33,26 @@ export class SolveTicketComponent implements OnInit {
     this.route.navigate(['/adminDashboard'])
   }
 
-  getSingleTicket(ticket:Ticket)
-  {
+  getSingleTicket(ticket:Ticket){
     this.toSolve=true;
-    this.ticketSolved(ticket);
+    this.ticket = ticket;
     
   }
 
 
   getAllQueries()
   {
-    this.ticketService.getAllQueries().subscribe
-    ((data)=>console.log(this.tickets = data))
+    this.ticketService.getAllQueries().subscribe((data)=>console.log(this.tickets = data));
     
   }
 
-  ticketSolved(ticket:Ticket)
+  ticketSolved()
   {
-    ticket.response = this.singleTicket_form.value.solution;
-    this.ticketService.solveTicket(ticket).subscribe(ticket => {alert("Ticket Solved!")});
-    this.getAllQueries();
-    this.toSolve=true;
+    this.ticket.response = this.singleTicket_form.value.solution;
+    this.ticketService.solveTicket(this.ticket).subscribe(ticket => {alert("Ticket Solved!");
+                                                                    this.getAllQueries();
+                                                                    this.toSolve=false;});
+                                                                    
   }
 
 }
