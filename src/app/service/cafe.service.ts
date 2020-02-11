@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cafe } from '../model/cafe.model';
 import { Observable } from 'rxjs';
+import { FoodItem } from '../model/fooditem.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CafeService {
 
   private ADD_CAFE_URI = "http://localhost:8888/front/add-cafe";
   private UPDATE_CAFE_URI = "http://localhost:8888/front/update-cafe";
-  private DELETE_CAFE_URI = "http://localhost:8888/front/delete-cafe";
+  private DELETE_CAFE_URI = "http://localhost:8880/cafe/delete-cafe";
   private GET_ALL_CAFE_URI = "http://localhost:8888/front/get-all-cafe";
   private GET_CAFE_BY_ID = "http://localhost:8888/front/get-by-id";
   private GET_CAFE_BY_NAME = "http://localhost:8888/front/get-by-name";
@@ -18,7 +19,8 @@ export class CafeService {
   private GET_CAFE_BY_DISH = "http://localhost:8888/front/get-by-dish";
   private GET_CAFE_BY_PRICE_RANGE = "http://localhost:8888/front/get-by-price-range";
   private GET_CAFE_BY_RATING_RANGE = "http://localhost:8888/front/get-by-rating-range";
-  private GET_FOOD_URI = "http://localhost:8888/front/get-food";
+  private GET_FOOD_URI = "http://localhost:8880/cafe/get-food";
+  private GET_DISH_FROM_CAFE = "http://localhost:8880/cafe/get-dish-from-cafe";
 
 
   constructor(private http:HttpClient) { }
@@ -65,6 +67,10 @@ export class CafeService {
 
   getFood(location:string, name:string):Observable<Cafe[]>{
     return this.http.get<Cafe[]>(this.GET_FOOD_URI+"?location="+location+"&name="+name);
+  }
+
+  getDishFromCafe(cafeId:number, dish:string):Observable<FoodItem[]>{
+  return this.http.get<FoodItem[]>(this.GET_DISH_FROM_CAFE+"?cafeId="+cafeId+"&dish="+dish);
   }
 
 }

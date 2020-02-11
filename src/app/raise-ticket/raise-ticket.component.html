@@ -1,1 +1,42 @@
-<p>raise-ticket works!</p>
+
+<div class="container">
+    <form [formGroup]="userDesk_form">
+          <table class="table table-bordered">
+                <tr>
+                  <th><h2 class="employeeme">{{employee.name}}</h2></th>
+                </tr>
+                <tr>
+                  <div class="form-group">
+                    <label for="orderId" class="orderId"><h4>Employee Id: </h4></label>
+                    <input type="text"  placeholder="Enter Employee Id" class="form-control" [value]="employee.capgeminiId" readonly><br>
+      
+  <br>
+  
+                    <label for="solution" class="comments"><h4>Query : </h4></label>
+                    <textarea class="form-control" formControlName="comments"  rows="3"  placeholder="Query"></textarea>
+                    <small class="text-muted" style="margin-left: 120px;">*Please enter less than 200 Characters.</small>
+                    <div *ngIf="userDesk_form.get('comments').hasError('required') && userDesk_form.get('comments').touched">
+                         <p class="alert alert-danger">Query Required</p> 
+                    </div>
+                    <div *ngIf="userDesk_form.get('comments').hasError('pattern') && userDesk_form.get('comments').touched">
+                      <p class="alert alert-danger">Only Alphabets Allowed.</p> 
+                    </div>
+                    <div *ngIf="userDesk_form.get('comments').hasError('maxlength') && userDesk_form.get('comments').touched">
+                      <p class="alert alert-danger">Enter only 200 Characters.</p> 
+                    </div>
+                    
+                    
+                </div>
+                </tr>
+                <br>
+                <tr class="submitBtn">
+                   
+                    <button [disabled]="!userDesk_form.valid" (click)="complaintRaised()" type="submit" class="btn btn-primary">Submit</button>
+                                   
+                </tr>
+          </table>
+    </form>
+  
+  
+  
+  </div> 

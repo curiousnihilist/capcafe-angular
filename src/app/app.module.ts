@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AddCafeComponent } from './add-cafe/add-cafe.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewCafeComponent } from './view-cafe/view-cafe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateCafeComponent } from './update-cafe/update-cafe.component';
@@ -20,6 +20,7 @@ import { SolveTicketComponent } from './solve-ticket/solve-ticket.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,14 +36,16 @@ import { TransactionComponent } from './transaction/transaction.component';
     SolveTicketComponent,
     LoginComponent,
     SignupComponent,
-    TransactionComponent
+    TransactionComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

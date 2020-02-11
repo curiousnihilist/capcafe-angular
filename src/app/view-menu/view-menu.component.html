@@ -3,11 +3,13 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
-<br>
+
+<div class="cotainer-fluid" style="background-image: url(../../assets/images/service.jpg); background-size: 100%;;background-repeat: no-repeat;background-size: cover; height: 700px;">
+    <br>
 <div class="row">
     <div class="col-md-8">
         <div class="card" style="width: 80%; left: 100px;">
-            <div class="card-body">
+            <div class="card-body" style="opacity: unset;">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 style="text-align: center;">{{cafe.name}}</h3>
@@ -20,7 +22,7 @@
                                         style="font-weight: normal;">{{cafe.owner}}</span>
                                 </p>
                             </div>
-                            <div class="col-xs-4" style="padding-left: 50px;">
+                            <div class="col-xs-4" style="padding-left: 400px;">
                                 <p style="font-weight: bold;">Avg Rating: <span
                                         style="font-weight: normal;">{{cafe.avgRating}}</span></p>
                                 <p style="font-weight: bold;">Avg Price: <span style="font-weight: normal;">Rs.
@@ -29,6 +31,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-group mb-3">
@@ -60,7 +63,7 @@
                             </thead>
                             <tbody>
                                 <tr
-                                    *ngFor="let dish of menu | paginate: { itemsPerPage: 10, currentPage: p }; let idx = index ">
+                                    *ngFor="let dish of menu | paginate: { itemsPerPage: 2, currentPage: p }; let idx = index ">
                                     <th scope="row">{{idx+1}}</th>
                                     <td>{{dish.name}}</td>
                                     <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">
@@ -113,7 +116,7 @@
             </div>
             <ul class="list-group" style="right: 60px;">
                 <li class="list-group-item">
-                    <pre>Total:                                    Rs. {{amount}}</pre>
+                    <pre>Total:                      Rs. {{amount}}</pre>
                     <p style="text-align:end ;"><button type="button" class="btn btn-primary" (click)="payment()">Go to
                             Payment</button></p>
                 </li>
@@ -124,4 +127,5 @@
 
     </div>
 
+</div>
 </div>

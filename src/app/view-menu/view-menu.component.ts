@@ -6,6 +6,7 @@ import { FoodItem } from '../model/fooditem.model';
 import { Router } from '@angular/router';
 import { LoginServiceService } from '../service/login-service.service';
 import { Order } from '../model/order.model';
+import { CafeService } from '../service/cafe.service';
 
 @Component({
   selector: 'app-view-menu',
@@ -23,7 +24,8 @@ export class ViewMenuComponent implements OnInit {
  
   constructor(private dataService:DataService, 
               private rotue:Router,
-              private loginService:LoginServiceService) { 
+              private loginService:LoginServiceService,
+              private cafeService:CafeService) { 
 
       this.finalOrder = new Order();
   }
@@ -52,13 +54,19 @@ export class ViewMenuComponent implements OnInit {
     this.finalOrder.employee = this.loginService.getEmpSession();
     this.finalOrder.cart = this.order;
     this.finalOrder.totalAmount = this.amount;
-    this.dataService.updateOrder(this.finalOrder);
-    this.rotue.navigate(['/transaction']);
-
+    if(this.amount==0){
+      alert("Nothing added in Cart!");
+    }
+    else{
+      this.dataService.updateOrder(this.finalOrder);
+      this.rotue.navigate(['/transaction']);
+  
+    }
+    
   }
 
   searchDish(){
-    
+    this.cafeService.getDishFromCafe(this.cafe.cafeId,this.dishName).subscribe(data => {this.menu = data})
   }
 
 

@@ -16,7 +16,9 @@ export class CustHomeComponent implements OnInit {
   searchText:string;
   private cafeList:Cafe[] = [];
   private locations:string[]=["Pune","Mumbai","Bangalore","Kolkata","Gurugram"];
-  constructor(private cafeService:CafeService, private dataService:DataService, private route:Router) { }
+
+  constructor(private cafeService:CafeService, private dataService:DataService, private route:Router) {
+   }
 
   ngOnInit() {
     this.cafeService.getAllCafe().subscribe(cafes => {this.cafeList = cafes});
@@ -29,6 +31,11 @@ export class CustHomeComponent implements OnInit {
   viewMenu(cafe:Cafe){
     this.dataService.updateData(cafe);
     this.route.navigate(['/view-menu']);
+  }
+
+  viewReview(cafe:Cafe){
+    this.dataService.updateData(cafe);
+    this.route.navigate(['/add-review']);
   }
 
 }
