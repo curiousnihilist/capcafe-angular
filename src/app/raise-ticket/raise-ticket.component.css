@@ -1,0 +1,24 @@
+
+
+.table
+{
+    /* margin-top: 10px; */
+    text-align: center;
+    border: 1px solid black;
+}
+
+.back
+{
+    margin-left: 1040px;
+    /* margin-top: 10px; */
+    font-size: 20px;
+}
+th{
+    color: white;
+}
+
+.btn
+{
+    background-color: rgb(10, 128, 238);
+    color: white;
+}

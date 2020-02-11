@@ -1,1 +1,78 @@
-<p>solve-ticket works!</p>
+<div class="container" *ngIf="!toSolve">
+
+    <div class="backBtn">
+        <button class="back btn btn-info" (click)="back()">Back</button>
+    </div>
+  
+    <div class="table-responsive">
+    <table class="table table-bordered  table-hover">
+      
+      <thead style="background-color: rgb(10, 128, 238);">
+        <tr>
+          <th scope="col"><h4>Ticket ID</h4></th>
+         <th scope="col"><h4>Employee ID</h4></th>  
+          <th scope="col"><h4>Query</h4></th>
+          <th scope="col"><h4>Status</h4></th>
+          <th scope="col"><h4>Action</h4></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of tickets" >
+          
+          <td scope="row"><h5>{{t.ticketId}}</h5></td>
+           <td><h5 >{{t.employee.empId}}</h5></td> 
+          <td><h5>{{t.query}}</h5></td>
+          <td>
+            <span [ngStyle]="{'color': t.status === 'RESOLVED' ? 'green' : 'red'}"><h5>{{t.status}}</h5></span>
+          </td>
+          <td><button (click)="getSingleTicket(t)" [disabled]="t.status === 'RESOLVED'" class="btn">Solve</button></td>
+        </tr >
+        
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="container" *ngIf="toSolve">
+    <div class="row-md-4"></div>
+    <div class="row-md-4">
+        <div class="container">
+            <form [formGroup]="singleTicket_form">
+                  <table class="table table-bordered">
+                        <tr>
+                          <th>
+                              <h2 class="employeeme">Employee Name</h2>
+                          </th>
+                        </tr>
+                        <br>
+                        <tr>
+                          <div class="form-group">
+                            <label for="query" class="query"><h4>Employee Query : </h4></label>
+                           
+                            <input type="text"  class="form-control"  [value]="singleEmpQuery?.query" readonly><br>
+                            <label for="solution" class="solution"><h4>Solution : </h4></label>
+        
+                            
+                            <textarea class="form-control" formControlName="solution"  rows="3"  placeholder="Solution"></textarea>
+                            <div *ngIf="singleTicket_form.get('solution').hasError('required') && singleTicket_form.get('solution').touched">
+                                 <p class="alert alert-danger">Solution Required</p> 
+                            </div>
+                            <div *ngIf="singleTicket_form.get('solution').hasError('pattern') && singleTicket_form.get('solution').touched">
+                              <p class="alert alert-danger">Only Alphabets Allowed.</p> 
+                            </div>
+                            
+                            
+                        </div>
+                        </tr>
+                        <br>
+                        <tr class="submitBtn">
+                           
+                            <button [disabled]="!singleTicket_form.valid" type="submit" (click)="ticketSolved()" class="btn btn-success">Submit</button>
+                                           
+                        </tr>
+                  </table>
+            </form>
+        </div>
+    </div>
+    <div class="row-md-4"></div>
+  </div>

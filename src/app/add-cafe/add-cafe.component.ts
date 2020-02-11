@@ -43,7 +43,6 @@ export class AddCafeComponent implements OnInit {
     this.cafeService.addCafe(this.cafe).subscribe( newCafe => {
       this.addedCafe = newCafe;
       alert("Cafe:"+this.addedCafe.name+" is added!");
-      this.route.navigate(['/view-cafes']);
     })
   }
 }

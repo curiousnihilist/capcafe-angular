@@ -3,6 +3,7 @@ import { Cafe } from '../model/cafe.model';
 import { FoodItem } from '../model/fooditem.model';
 import { CafeService } from '../service/cafe.service';
 import { DataService } from '../service/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-cafe',
@@ -18,7 +19,7 @@ export class UpdateCafeComponent implements OnInit {
   private menu:FoodItem[]=[];
   private locations:string[]=["Pune","Mumbai","Bangalore","Kolkata","Gurugram"];
 
-  constructor(private cafeService:CafeService, private dataService:DataService) { 
+  constructor(private cafeService:CafeService, private dataService:DataService, private route:Router) { 
     this.cafe = new Cafe();
     this.addedCafe = new Cafe();
     this.foodItem = new FoodItem();
@@ -44,7 +45,8 @@ export class UpdateCafeComponent implements OnInit {
 
   updateCafe(){
     console.log(this.cafe);
-    this.cafeService.updateCafe(this.cafe).subscribe();
+    this.cafeService.updateCafe(this.cafe).subscribe(cafe => {alert("Cafe updated Successfuly!");});
+    this.route.navigate(['/view-cafe']);
   }
 
 }

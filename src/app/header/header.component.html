@@ -7,6 +7,12 @@
         <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-tarnsparent btn-sm button-group">
+                        <a class="nav-link" [routerLink]="['/about']" routerLinkActive="active" *ngIf="loginService.isUserloggedin || loginService.isAdminloggedin">Profile</a></button>
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto" style="position: relative;">
                              
                 <li class="nav-item">

@@ -16,7 +16,7 @@ export class LoginServiceService {
   loggedInEmployee:Employee;
   loggedInAdmin:Admin;
 
-  private LOGIN_URI = "http://localhost:8888/front/employeeLogin";
+  private LOGIN_URI = "http://localhost:8881/capcafe/employeeLogin";
   private SIGNUP_URI = "http://localhost:8888/front/add";
   private ADMIN_LOGIN_URI = "http://localhost:8888/front/adminLogin";
 
@@ -39,21 +39,28 @@ export class LoginServiceService {
   createSession(employee:Employee){
     this.isUserloggedin=true;
     this.loggedInEmployee = employee;
+    localStorage.setItem("empId",this.loggedInEmployee.empId.toString())
+    console.log(localStorage.getItem("empId"));
   }
 
   destroySession(){
     this.isUserloggedin=false;
     this.loggedInEmployee = new Employee();
+    localStorage.clear();
+    
   }
 
   createAdminSession(admin:Admin){
     this.isAdminloggedin=true;
     this.loggedInAdmin = admin;
+    localStorage.setItem("empId",this.loggedInAdmin.empId.toString())
+
   }
 
   destroyAdminSession(){
     this.isAdminloggedin=false;
     this.loggedInAdmin = new Admin();
+    localStorage.clear();
   }
 
   getEmpSession():Employee{

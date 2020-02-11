@@ -1,1 +1,67 @@
-<p>transaction works!</p>
+<div class="container">
+    <div>
+        <form [formGroup]="paymentForm">
+          <div class="container register">
+            <div class="row">
+                <div class="col-md-2 register-left"></div>
+                   
+               
+                <div class="col-md-9 register-right">
+                    
+              <div class="tab-content" id="myTabContent">
+                        
+                 <h1 class="register-heading">CapCafe Payment</h1>
+                     <div class="raw">
+                          <div class="form-group">
+                            <label for="empId"><h4>Employee ID :-</h4></label>
+                            <input type="text" formControlName="empId"   id="empId"  class="form-control" placeholder="Employee ID" [value]="order.employee.empId" readonly/>
+                            <!-- <div style="margin-top: 8px;" *ngIf="paymentForm.get('empId').hasError('required') && paymentForm.get('empId').touched">
+                              <h6 class="alert alert-danger">Employee ID is required</h6>
+                            </div>
+                            <div style="margin-top: 8px;" *ngIf="paymentForm.get('empId').hasError('pattern') && paymentForm.get('empId').touched">
+                              <h6 class="alert alert-danger">Enter only digits.</h6>
+                            </div>
+                            <div style="margin-top: 8px;" *ngIf="paymentForm.get('empId').hasError('minlength') && paymentForm.get('empId').touched">
+                              <h6 class="alert alert-danger">You entered less than 6 digits.</h6>
+                            </div>
+                            <div style="margin-top: 8px;" *ngIf="paymentForm.get('empId').hasError('maxlength') && paymentForm.get('empId').touched">
+                              <h6 class="alert alert-danger">You entered more than 6 digits.</h6>
+                            </div> -->
+                            
+                          </div>
+                         
+
+                          <div class="form-group">
+                            <label for="empName"><h4>Employee Name :-</h4></label>
+                            <input type="text" formControlName="empName"  id="empName"  class="form-control" placeholder="Employee Name" [value]="order.employee.name" readonly/>
+                            <!-- <div style="margin-top: 8px;" *ngIf="paymentForm.get('empName').hasError('required') && paymentForm.get('empName').touched">
+                              <h6 class="alert alert-danger">Employee Name is required</h6>
+                            </div>
+                            <div style="margin-top: 8px;" *ngIf="paymentForm.get('empName').hasError('pattern') && paymentForm.get('empName').touched">
+                              <h6 class="alert alert-danger">Enter only Characters.</h6>
+                            </div> -->
+                          </div>
+
+                          <div class="form-group">
+                            <label for="w_amount"><h4>Wallet Amount :-</h4></label>
+                            <input type="text" id="w_amount"   class="form-control" placeholder="Wallet Amount"  [value]="order.employee.wallet" readonly/>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="t_amount"><h4>Total Amount :-</h4></label>
+                            <input type="text" id="t_amount"   class="form-control" placeholder="Total Amount" [value]="order.totalAmount" readonly/>
+                          </div>
+                       </div>
+                        
+                             <button  class="btn btn-primary" (click)="paymentOrder()" type="submit" >Payment</button>
+                         
+                  </div>
+                 
+                </div>
+                
+              </div>  
+              </div>
+     
+        </form>
+    </div>
+</div>

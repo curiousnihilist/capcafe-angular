@@ -12,21 +12,23 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { RouteGaurdService } from './service/route-gaurd.service';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'cust-home',pathMatch:'full'},
   {path:'add-cafe',component:AddCafeComponent},
   {path:'view-cafe',component:ViewCafeComponent, canActivate: [RouteGaurdService]},
-  {path:'update-cafe', component:UpdateCafeComponent},
+  {path:'update-cafe', component:UpdateCafeComponent, canActivate: [RouteGaurdService]},
   {path:'cust-home', component:CustHomeComponent},
-  {path:'view-menu', component:ViewMenuComponent},
-  {path:'add-review', component:AddReviewComponent},
-  {path:'raise-ticket', component:RaiseTicketComponent},
-  {path:'solve-ticket', component:SolveTicketComponent},
+  {path:'view-menu', component:ViewMenuComponent, canActivate: [RouteGaurdService]},
+  {path:'add-review', component:AddReviewComponent, canActivate: [RouteGaurdService]},
+  {path:'raise-ticket', component:RaiseTicketComponent, canActivate: [RouteGaurdService]},
+  {path:'solve-ticket', component:SolveTicketComponent, canActivate: [RouteGaurdService]},
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
-  {path:'transaction', component:TransactionComponent},
+  {path:'transaction', component:TransactionComponent, canActivate: [RouteGaurdService]},
+  {path:'about', component:AboutComponent, canActivate: [RouteGaurdService]}
 ];
 
 @NgModule({

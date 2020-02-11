@@ -24,10 +24,11 @@ export class ViewCafeComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllCafe();
+    //console.log(this.cafeList);
   }
 
   loadAllCafe(){
-    this.cafeService.getAllCafe().subscribe( cafes => {this.cafeList = cafes});
+    this.cafeService.getAllCafe().subscribe( cafes => {this.cafeList = cafes;console.log(this.cafeList);});
   }
 
   showMenu(currentId:number){

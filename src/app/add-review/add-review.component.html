@@ -1,1 +1,43 @@
-<p>add-review works!</p>
+<br>
+<br>
+<div class="container">
+    <form [formGroup]="employeereview_form">
+        <table class="table table-bordered">
+
+            <tr>
+                <div class="form-group">
+                   
+                        <h4 style="text-align: center;">Add review </h4>
+                    <br>
+                    <textarea type="text" formControlName="empreview" placeholder="Add Review" class="form-control"></textarea>
+                    <br>
+                    <!--<small class="text-muted" style="margin-left: 120px;">*Please enter 6 digit Id.</small>
+                    -->
+                    <div
+                        *ngIf="employeereview_form.get('empreview').hasError('required') && employeereview_form.get('empreview').touched">
+                        <p class="alert alert-danger" style="margin-top:-18px;">Review is Required</p>
+                    </div>
+                    <div
+                        *ngIf="employeereview_form.get('empreview').hasError('pattern') && employeereview_form.get('empreview').touched">
+                        <p class="alert alert-danger">Only Alphabets Allowed.</p>
+                    </div>
+
+                </div>
+            </tr>
+            <br>
+
+            <h6 style="text-align: justify;"> Rating</h6> 
+                    <fieldset class="rating" style="text-align: justify;">
+                        <input type="radio" id="star5" name="rating" value="5" formControlName="rating"/><label class = "full" for="star5" title="Awesome - 5 stars">Awesome - 5 stars</label><br>
+                        <input type="radio" id="star4" name="rating" value="4" formControlName="rating"/><label class = "full" for="star4" title="Pretty good - 4 stars">Pretty good - 4 stars</label><br>
+                        <input type="radio" id="star3" name="rating" value="3" formControlName="rating"/><label class = "full" for="star3" title="Meh - 3 stars">Meh - 3 stars</label><br>
+                        <input type="radio" id="star2" name="rating" value="2" formControlName="rating"/><label class = "full" for="star2" title="Kinda bad - 2 stars">Kinda bad - 2 stars</label><br>
+                        <input type="radio" id="star1" name="rating" value="1" formControlName="rating"/><label class = "full" for="star1" title="Sucks big time - 1 star">Sucks big time - 1 star</label><br>
+                    </fieldset>
+            <tr class="submitBtn" style="text-align: center;">
+                <button [disabled]="!employeereview_form.valid" (click)="reviewAdd()" type="submit" class="btn btn-primary btn-sm">Add Review</button>
+            </tr>
+        </table>
+    </form>
+    <br>
+</div>
