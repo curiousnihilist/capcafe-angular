@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-  if(this.login.capgeminiId=="123456" ){
+  if(this.login.capgeminiId=="12345" ){
     this.loginService.loginAdmin(this.login).subscribe(admin => {if(admin !=null){
                                                                 this.loginService.createAdminSession(admin);
                                                                 alert("Login Successfull!");
