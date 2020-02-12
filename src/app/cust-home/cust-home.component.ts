@@ -4,6 +4,8 @@ import { Cafe } from '../model/cafe.model';
 import { FoodItem } from '../model/fooditem.model';
 import { DataService } from '../service/data.service';
 import { Router } from '@angular/router';
+import { Login } from '../model/login.model';
+import { LoginServiceService } from '../service/login-service.service';
 
 @Component({
   selector: 'app-cust-home',
@@ -17,11 +19,13 @@ export class CustHomeComponent implements OnInit {
   private cafeList:Cafe[] = [];
   private locations:string[]=["Pune","Mumbai","Bangalore","Kolkata","Gurugram"];
 
-  constructor(private cafeService:CafeService, private dataService:DataService, private route:Router) {
+  constructor(private cafeService:CafeService, private dataService:DataService, private route:Router,
+              private loginService:LoginServiceService) {
    }
 
   ngOnInit() {
     this.cafeService.getAllCafe().subscribe(cafes => {this.cafeList = cafes});
+    console.log(this.loginService.getEmpSession());
   }
 
   searchCafe(){

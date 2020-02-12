@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cafe } from '../model/cafe.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { FoodItem } from '../model/fooditem.model';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,51 +27,63 @@ export class CafeService {
   constructor(private http:HttpClient) { }
 
   addCafe(cafe:Cafe):Observable<Cafe>{
-    return this.http.post<Cafe>(this.ADD_CAFE_URI,cafe);
+    return this.http.post<Cafe>(this.ADD_CAFE_URI,cafe).pipe(retry(1), catchError(this.errorHandler));
   }
 
   updateCafe(cafe:Cafe):Observable<Cafe>{
-    return this.http.put<Cafe>(this.UPDATE_CAFE_URI,cafe);
+    return this.http.put<Cafe>(this.UPDATE_CAFE_URI,cafe).pipe(retry(1), catchError(this.errorHandler));
   }
 
   deleteCafe(cafeId:number):Observable<boolean>{
-    return this.http.delete<boolean>(this.DELETE_CAFE_URI+"?cafeId="+cafeId);
+    return this.http.delete<boolean>(this.DELETE_CAFE_URI+"?cafeId="+cafeId).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getAllCafe():Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_ALL_CAFE_URI)
+    return this.http.get<Cafe[]>(this.GET_ALL_CAFE_URI).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeById(cafeId:number):Observable<Cafe>{
-    return this.http.get<Cafe>(this.GET_CAFE_BY_ID+"?cafeId="+cafeId);
+    return this.http.get<Cafe>(this.GET_CAFE_BY_ID+"?cafeId="+cafeId).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeByName(name:string):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_CAFE_BY_NAME+"?name="+name);
+    return this.http.get<Cafe[]>(this.GET_CAFE_BY_NAME+"?name="+name).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeByLocation(location:string):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_CAFE_BY_LOCATION+"?location="+location);
+    return this.http.get<Cafe[]>(this.GET_CAFE_BY_LOCATION+"?location="+location).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeByDish(dish:string):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_CAFE_BY_DISH+"?dish="+dish);
+    return this.http.get<Cafe[]>(this.GET_CAFE_BY_DISH+"?dish="+dish).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeByRatingRange(min:number,max:number):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_CAFE_BY_RATING_RANGE+"?min="+min+"&max="+max);
+    return this.http.get<Cafe[]>(this.GET_CAFE_BY_RATING_RANGE+"?min="+min+"&max="+max).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getCafeByPriceRange(min:number,max:number):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_CAFE_BY_PRICE_RANGE+"?min="+min+"&max="+max);
+    return this.http.get<Cafe[]>(this.GET_CAFE_BY_PRICE_RANGE+"?min="+min+"&max="+max).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getFood(location:string, name:string):Observable<Cafe[]>{
-    return this.http.get<Cafe[]>(this.GET_FOOD_URI+"?location="+location+"&name="+name);
+    return this.http.get<Cafe[]>(this.GET_FOOD_URI+"?location="+location+"&name="+name).pipe(retry(1), catchError(this.errorHandler));
   }
 
   getDishFromCafe(cafeId:number, dish:string):Observable<FoodItem[]>{
-  return this.http.get<FoodItem[]>(this.GET_DISH_FROM_CAFE+"?cafeId="+cafeId+"&dish="+dish);
+  return this.http.get<FoodItem[]>(this.GET_DISH_FROM_CAFE+"?cafeId="+cafeId+"&dish="+dish).pipe(retry(1), catchError(this.errorHandler));
   }
 
+  errorHandler(error) {
+    //console.log(error.)
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) { //client side error
+      errorMessage = `Error: ${error.error.message}`;
+    }
+    else { //server side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.error}`;
+    }
+    window.alert(errorMessage);
+    return throwError(error.error)
+  }
 }

@@ -37,9 +37,9 @@ export class TransactionComponent implements OnInit {
 
   paymentOrder(){
     this.transaction.order = this.order;
-    this.transaction.paymentMode = "By Wallet";
-    this.paymentService.saveOrder(this.order).subscribe(data => {console.log(data)});
     this.paymentService.addTransaction(this.transaction).subscribe(data => {console.log(data);alert("Payment Successfull! Thank You for Ordering!");
+    this.paymentService.saveOrder(this.order).subscribe(data => {console.log(data)});
+    console.log(this.transaction);
     this.route.navigate(['/cust-home'])});
   }
 

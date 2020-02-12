@@ -1,0 +1,108 @@
+.register
+{
+  /* background: -webkit-linear-gradient(left, #cdccda, #bed0d4);
+  padding: 2%;  */
+  margin-bottom: 30px;
+}
+
+
+input
+{
+  font-weight: 600;
+  font-size: 19px;
+  width: 80%;
+ 
+}
+.alert
+{
+  width: 80%;
+}
+
+.form-control
+{
+  padding: 10px;
+}
+.register-right
+{
+  /* background: #f8f9fa;
+  border-top-left-radius: 10% 30% 20% 40%; 
+  border-bottom-left-radius: 15% 20%;
+  border-top-right-radius : 15% 20% ; */
+
+  padding: 2%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-top-right-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+}
+
+.register .register-form{
+  padding: 10%;
+  margin-top: 10%;
+  background-color: white;
+}
+
+.btn
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 1.5rem;
+  color: #0062cc;
+  font-weight: 600;
+  cursor: pointer; 
+  border: none;
+  width: 20%;
+  margin-left: 270px;
+
+}
+
+.register-heading
+{
+  text-align: center;
+  margin-top: 4%;
+  margin-bottom: -17%;
+  color: white;
+}
+
+
+.form-group
+{
+  /* display: flex; */
+   margin-left: 50px;
+}
+
+
+.raw
+{
+  margin-top: 150px;
+}
+
+
+.icon {
+  padding: 10px;
+  /* background: #0062cc; */
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 150px;
+  margin-left: 60px;
+}
+
+label
+{
+  color:white;
+}
+
+
+.form-control
+{
+  
+  
+  box-shadow: 0 0 4px 0 #0062cc;
+}
+
+
+
+

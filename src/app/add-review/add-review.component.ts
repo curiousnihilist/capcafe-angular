@@ -5,6 +5,7 @@ import { DataService } from '../service/data.service';
 import { Cafe } from '../model/cafe.model';
 import { ReviewService } from '../service/review.service';
 import { LoginServiceService } from '../service/login-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-review',
@@ -18,7 +19,10 @@ export class AddReviewComponent implements OnInit {
   rating:number;
   cafe:Cafe;
 
-  constructor(private dataService:DataService, private reviewService:ReviewService, private loginService:LoginServiceService) {
+  constructor(private dataService:DataService,
+              private reviewService:ReviewService, 
+              private loginService:LoginServiceService,
+              private route:Router) {
     this.review = new Review();
     this.cafe = new Cafe();
    }
@@ -43,7 +47,7 @@ export class AddReviewComponent implements OnInit {
      this.review.cafe = this.cafe;
      
      console.log(this.review)
-     this.reviewService.addreview(this.review).subscribe()
+     this.reviewService.addreview(this.review).subscribe(data => {this.route.navigate(['/cust-home'])})
      
   }
 

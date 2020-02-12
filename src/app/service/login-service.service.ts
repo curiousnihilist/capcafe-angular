@@ -19,6 +19,7 @@ export class LoginServiceService {
   private LOGIN_URI = "http://localhost:8881/capcafe/employeeLogin";
   private SIGNUP_URI = "http://localhost:8888/front/add";
   private ADMIN_LOGIN_URI = "http://localhost:8888/front/adminLogin";
+  private GET_EMP_BY_ID = "http://localhost:8881/capcafe/get-emp-by-id";
 
   constructor(private http:HttpClient) {
     this.loggedInEmployee = new Employee();
@@ -63,8 +64,18 @@ export class LoginServiceService {
     localStorage.clear();
   }
 
+  fetchEmployee(empId:number):Observable<Employee>{
+    return this.http.get<Employee>(this.GET_EMP_BY_ID+"?id="+empId);
+  }
+
   getEmpSession():Employee{
+    this.fetchEmployee(+localStorage.getItem("empId")).subscribe(data => {this.loggedInEmployee=data; console.log(data);});
+    return this.getLoggedInEmployee();
+  }
+
+  getLoggedInEmployee():Employee{
     return this.loggedInEmployee;
+
   }
 
   getAdminSession():Admin{

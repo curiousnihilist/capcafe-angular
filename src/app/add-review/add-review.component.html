@@ -26,7 +26,11 @@
             </tr>
             <br>
 
-            <h6 style="text-align: justify;"> Rating</h6> 
+            
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <h6 style="text-align: center;"> Rating</h6>
                     <fieldset class="rating" style="text-align: justify;">
                         <input type="radio" id="star5" name="rating" value="5" formControlName="rating"/><label class = "full" for="star5" title="Awesome - 5 stars">Awesome - 5 stars</label><br>
                         <input type="radio" id="star4" name="rating" value="4" formControlName="rating"/><label class = "full" for="star4" title="Pretty good - 4 stars">Pretty good - 4 stars</label><br>
@@ -34,6 +38,9 @@
                         <input type="radio" id="star2" name="rating" value="2" formControlName="rating"/><label class = "full" for="star2" title="Kinda bad - 2 stars">Kinda bad - 2 stars</label><br>
                         <input type="radio" id="star1" name="rating" value="1" formControlName="rating"/><label class = "full" for="star1" title="Sucks big time - 1 star">Sucks big time - 1 star</label><br>
                     </fieldset>
+                </div>
+            </div> 
+                    
             <tr class="submitBtn" style="text-align: center;">
                 <button [disabled]="!employeereview_form.valid" (click)="reviewAdd()" type="submit" class="btn btn-primary btn-sm">Add Review</button>
             </tr>

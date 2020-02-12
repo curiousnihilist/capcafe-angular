@@ -13,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { RouteGaurdService } from './service/route-gaurd.service';
 import { AboutComponent } from './about/about.component';
+import { AddMoneyComponent } from './add-money/add-money.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'transaction', component:TransactionComponent, canActivate: [RouteGaurdService]},
-  {path:'about', component:AboutComponent, canActivate: [RouteGaurdService]}
+  {path:'about', component:AboutComponent, canActivate: [RouteGaurdService]},
+  {path:'add-money', component:AddMoneyComponent, canActivate: [RouteGaurdService]}
 ];
 
 @NgModule({

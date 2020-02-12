@@ -54,14 +54,24 @@ export class ViewMenuComponent implements OnInit {
     this.finalOrder.employee = this.loginService.getEmpSession();
     this.finalOrder.cart = this.order;
     this.finalOrder.totalAmount = this.amount;
-    if(this.amount==0){
-      alert("Nothing added in Cart!");
+    if(this.loginService.getEmpSession().wallet<this.amount){
+      if(confirm("Not Enough amount in Wallet! Want to add money?")){
+        console.log("Yesssssssssss");
+        this.rotue.navigate(['/add-money']);
+      }
+          
+    }else{
+      if(this.amount==0){
+        alert("Nothing added in Cart!");
+      }
+      else{
+        this.dataService.updateOrder(this.finalOrder);
+        this.rotue.navigate(['/transaction']);
+    
+      }
     }
-    else{
-      this.dataService.updateOrder(this.finalOrder);
-      this.rotue.navigate(['/transaction']);
-  
-    }
+      
+    
     
   }
 
@@ -69,6 +79,20 @@ export class ViewMenuComponent implements OnInit {
     this.cafeService.getDishFromCafe(this.cafe.cafeId,this.dishName).subscribe(data => {this.menu = data})
   }
 
+  sortDish(){
+    this.menu = this.menu.sort((obj1, obj2) => {
+      if (obj1.price > obj2.price) {
+          return 1;
+      }
+  
+      if (obj1.price < obj2.price) {
+          return -1;
+      }
+  
+      return 0;
+  });
+  
+  }
 
   
 
