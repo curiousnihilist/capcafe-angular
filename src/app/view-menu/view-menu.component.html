@@ -69,7 +69,7 @@
                             </thead>
                             <tbody>
                                 <tr
-                                    *ngFor="let dish of menu | paginate: { itemsPerPage: 10, currentPage: p }; let idx = index ">
+                                    *ngFor="let dish of menu | paginate: { itemsPerPage: 5, currentPage: p }; let idx = index ">
                                     <th scope="row">{{idx+1}}</th>
                                     <td>{{dish.name}}</td>
                                     <td [ngStyle]="{'color':dish.itemType === 'VEG' ? 'green' : 'red' }">

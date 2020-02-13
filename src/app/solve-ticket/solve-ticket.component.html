@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let t of tickets" >
+        <tr *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }" >
           
           <td scope="row"><h5>{{t.ticketId}}</h5></td>
            <td><h5 >{{t.employee.empId}}</h5></td> 
@@ -27,7 +27,13 @@
           </td>
           <td><button (click)="getSingleTicket(t)" [disabled]="t.status === 'RESOLVED'" class="btn">Solve</button></td>
         </tr >
-        
+        <tr>
+          <td colspan="4">
+              <p style="text-align: center; font-size: smaller;">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </p>
+          </td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -38,7 +44,7 @@
     <div class="row-md-4">
         <div class="container">
             <form [formGroup]="singleTicket_form">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-sm">
                         <tr>
                           <th>
                               <h2 class="employeeme">Employee Name</h2>

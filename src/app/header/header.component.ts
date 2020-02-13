@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../service/login-service.service';
 import { Router } from '@angular/router';
+import { Employee } from '../model/employee.model';
+import { Admin } from '../model/admin.model';
 
 @Component({
   selector: 'header',
@@ -9,10 +11,24 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService:LoginServiceService, private route:Router) { 
+  isloggedInUser:boolean;
+  isloggedInAdmin:boolean;
+  employee:Employee;
+  admin:Admin;
+  constructor(private loginService:LoginServiceService, private route:Router) {
+    this.employee = new Employee();
+    this.admin = new Admin();
   }
 
   ngOnInit() {
+    // if(localStorage.getItem("empId")!=null){
+    //   this.employee =  this.loginService.getEmpSession();
+    //   this.isloggedInUser = true;
+    // }
+    // else{
+    //   this.isloggedInUser =false;
+    // }
+        
   }
 
   logout(){

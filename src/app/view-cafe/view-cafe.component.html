@@ -55,7 +55,7 @@
         <th scope="col">Options</th>
       </tr>
     </thead>
-    <tbody *ngFor="let cafe of cafeList">
+    <tbody *ngFor="let cafe of cafeList| paginate: { itemsPerPage: 10, currentPage: p }">
       <tr>
         <th scope="row">{{cafe.cafeId}}</th>
         <td>{{cafe.name}}</td>
@@ -91,4 +91,8 @@
     </tr>
     </tbody>
   </table>
-  
+
+<p style="text-align: center; font-size: smaller;">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</p>
+ 

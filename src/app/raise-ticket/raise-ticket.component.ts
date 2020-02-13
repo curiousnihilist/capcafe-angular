@@ -26,7 +26,7 @@ export class RaiseTicketComponent implements OnInit {
 
     this.userDesk_form = new FormGroup
     ({
-      comments : new FormControl(null,[Validators.required,Validators.pattern('^[a-zA-Z.,-\-\']+'),Validators.maxLength(200)])
+      comments : new FormControl(null,[Validators.required,Validators.maxLength(200)])
     })
     
   }

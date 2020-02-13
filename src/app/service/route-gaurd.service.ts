@@ -11,8 +11,6 @@ export class RouteGaurdService implements CanActivate{
   constructor(private loginService:LoginServiceService, private router:Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
-    console.log(this.loginService.isAdminloggedin);
-    console.log(this.loginService.isUserloggedin);
     if(this.loginService.isAdminloggedin || this.loginService.isUserloggedin)
         return true;
     else{
