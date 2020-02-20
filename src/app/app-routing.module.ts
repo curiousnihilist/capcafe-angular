@@ -14,11 +14,12 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { RouteGaurdService } from './service/route-gaurd.service';
 import { AboutComponent } from './about/about.component';
 import { AddMoneyComponent } from './add-money/add-money.component';
+import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'cust-home',pathMatch:'full'},
-  {path:'add-cafe',component:AddCafeComponent},
+  {path:'add-cafe',component:AddCafeComponent, canActivate: [RouteGaurdService]},
   {path:'view-cafe',component:ViewCafeComponent, canActivate: [RouteGaurdService]},
   {path:'update-cafe', component:UpdateCafeComponent, canActivate: [RouteGaurdService]},
   {path:'cust-home', component:CustHomeComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:'signup', component:SignupComponent},
   {path:'transaction', component:TransactionComponent, canActivate: [RouteGaurdService]},
   {path:'about', component:AboutComponent, canActivate: [RouteGaurdService]},
-  {path:'add-money', component:AddMoneyComponent, canActivate: [RouteGaurdService]}
+  {path:'add-money', component:AddMoneyComponent, canActivate: [RouteGaurdService]},
+  {path:'admin-review', component:AdminReviewsComponent, canActivate: [RouteGaurdService]}
 ];
 
 @NgModule({

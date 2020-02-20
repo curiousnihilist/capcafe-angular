@@ -1,0 +1,61 @@
+<br>
+<br>
+<div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-sm">
+       
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">
+              Employee Id
+            </th>
+            <th scope="col">
+              Employee Name
+            </th>
+            <th scope="col">
+              Cafe Id
+            </th>
+            <th scope="col">
+              Cafe Name
+            </th>
+            <th scope="col">
+              Review
+            </th>
+            <th scope="col">
+              Rating
+            </th>
+          </tr>
+        </thead>
+       <tbody>
+        <tr>
+          <td><input type="text" [value]="search1" (input)="search1=$event.target.value" placeholder="Enter Employee Id"/></td>
+          <td><input type="text" [value]="search4" (input)="search4=$event.target.value" placeholder="Enter Employee Name"/></td>
+          <td><input type="text" [value]="search2" (input)="search2=$event.target.value" placeholder="Enter Cafe Id"/></td>
+          <td><input type="text" [value]="search3" (input)="search3=$event.target.value" placeholder="Enter Cafe Name"/></td> 
+  
+      </tr> 
+          <tr *ngFor="let r of review|searchPipe1:search1|searchPipe2:search2|searchPipe3:search3|searchPipe4:search4"> 
+  
+            <td scope="row">
+              {{r.employee.empId}}
+            </td>
+            <td>
+              {{r.employee.name}}
+            </td>
+            <td>
+              {{r.cafe.cafeId}}
+            </td>
+            <td>
+              {{r.cafe.name}}
+            </td>
+            <td>
+              {{r.review}}
+            </td>
+            <td>
+              {{r.rating}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,84 +1,105 @@
+<br>
+<br>
 <div class="container" *ngIf="!toSolve">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-sm">
 
-    <div class="backBtn">
-        <button class="back btn btn-info" (click)="back()">Back</button>
-    </div>
-  
-    <div class="table-responsive">
-    <table class="table table-bordered  table-hover">
-      
-      <thead style="background-color: rgb(10, 128, 238);">
+      <thead class="thead-dark">
         <tr>
-          <th scope="col"><h4>Ticket ID</h4></th>
-         <th scope="col"><h4>Employee ID</h4></th>  
-          <th scope="col"><h4>Query</h4></th>
-          <th scope="col"><h4>Status</h4></th>
-          <th scope="col"><h4>Action</h4></th>
+          <th scope="col">
+            Ticket ID
+          </th>
+          <th scope="col">
+            Employee ID
+          </th>
+          <th scope="col">
+            Query
+          </th>
+          <th scope="col">
+            Status
+          </th>
+          <th scope="col">
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }" >
-          
-          <td scope="row"><h5>{{t.ticketId}}</h5></td>
-           <td><h5 >{{t.employee.empId}}</h5></td> 
-          <td><h5>{{t.query}}</h5></td>
+        <tr *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
+          <td scope="row">
+            {{t.ticketId}}
+          </td>
           <td>
-            <span [ngStyle]="{'color': t.status === 'RESOLVED' ? 'green' : 'red'}"><h5>{{t.status}}</h5></span>
+            {{t.employee.empId}}
           </td>
-          <td><button (click)="getSingleTicket(t)" [disabled]="t.status === 'RESOLVED'" class="btn">Solve</button></td>
-        </tr >
+          <td>
+            {{t.query}}
+          </td>
+          <td>
+            <span [ngStyle]="{'color': t.status === 'RESOLVED' ? 'green' : 'red'}">
+              {{t.status}}
+            </span>
+          </td>
+          <td><p style="text-align: center;"><button (click)="getSingleTicket(t)" [disabled]="t.status === 'RESOLVED'" class="btn btn-primary btn-sm">Solve</button></p></td>
+        </tr>
         <tr>
-          <td colspan="4">
-              <p style="text-align: center; font-size: smaller;">
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
-              </p>
+          <td colspan="5">
+            <p style="text-align: center; font-size: smaller;">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </p>
           </td>
-      </tr>
+        </tr>
       </tbody>
     </table>
   </div>
-  </div>
+</div>
 
-  <div class="container" *ngIf="toSolve">
-    <div class="row-md-4"></div>
-    <div class="row-md-4">
-        <div class="container">
-            <form [formGroup]="singleTicket_form">
-                  <table class="table table-bordered table-sm">
-                        <tr>
-                          <th>
-                              <h2 class="employeeme">Employee Name</h2>
-                          </th>
-                        </tr>
-                        <br>
-                        <tr>
-                          <div class="form-group">
-                            <label for="query" class="query"><h4>Employee Query : </h4></label>
-                           
-                            <input type="text"  class="form-control"  [value]="ticket.query" readonly><br>
-                            <label for="solution" class="solution"><h4>Solution : </h4></label>
-        
-                            
-                            <textarea class="form-control" formControlName="solution"  rows="3"  placeholder="Solution"></textarea>
-                            <div *ngIf="singleTicket_form.get('solution').hasError('required') && singleTicket_form.get('solution').touched">
-                                 <p class="alert alert-danger">Solution Required</p> 
-                            </div>
-                            <div *ngIf="singleTicket_form.get('solution').hasError('pattern') && singleTicket_form.get('solution').touched">
-                              <p class="alert alert-danger">Only Alphabets Allowed.</p> 
-                            </div>
-                            
-                            
-                        </div>
-                        </tr>
-                        <br>
-                        <tr class="submitBtn">
-                           
-                            <button [disabled]="!singleTicket_form.valid" type="submit" (click)="ticketSolved()" class="btn btn-success">Submit</button>
-                                           
-                        </tr>
-                  </table>
-            </form>
-        </div>
+<div class="container" *ngIf="toSolve">
+  <div class="row-md-4"></div>
+  <div class="row-md-4">
+    <div class="container">
+      <form [formGroup]="singleTicket_form">
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>
+              <h2 class="employeeme">Employee Name</h2>
+            </th>
+          </tr>
+          <br>
+          <tr>
+            <div class="form-group">
+              <label for="query" class="query">
+                <h4>Employee Query : </h4>
+              </label>
+
+              <input type="text" class="form-control" [value]="ticket.query" readonly><br>
+              <label for="solution" class="solution">
+                <h4>Solution : </h4>
+              </label>
+
+
+              <textarea class="form-control" formControlName="solution" rows="3" placeholder="Solution"></textarea>
+              <div
+                *ngIf="singleTicket_form.get('solution').hasError('required') && singleTicket_form.get('solution').touched">
+                <p class="alert alert-danger">Solution Required</p>
+              </div>
+              <div
+                *ngIf="singleTicket_form.get('solution').hasError('pattern') && singleTicket_form.get('solution').touched">
+                <p class="alert alert-danger">Only Alphabets Allowed.</p>
+              </div>
+
+
+            </div>
+          </tr>
+          <br>
+          <tr class="submitBtn">
+
+            <button [disabled]="!singleTicket_form.valid" type="submit" (click)="ticketSolved()"
+              class="btn btn-success">Submit</button>
+
+          </tr>
+        </table>
+      </form>
     </div>
-    <div class="row-md-4"></div>
   </div>
+  <div class="row-md-4"></div>
+</div>

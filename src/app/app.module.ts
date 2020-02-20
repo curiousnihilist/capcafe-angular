@@ -22,6 +22,9 @@ import { SignupComponent } from './signup/signup.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AboutComponent } from './about/about.component';
 import { AddMoneyComponent } from './add-money/add-money.component';
+import { FooterComponent } from './footer/footer.component';
+import { SearchPipe1, SearchPipe2, SearchPipe3, SearchPipe4 } from './service/searchpipe';
+import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,13 @@ import { AddMoneyComponent } from './add-money/add-money.component';
     SignupComponent,
     TransactionComponent,
     AboutComponent,
-    AddMoneyComponent
+    AddMoneyComponent,
+    FooterComponent,
+    SearchPipe1,
+    SearchPipe2,
+    SearchPipe3,
+    SearchPipe4,
+    AdminReviewsComponent
   ],
   imports: [
     BrowserModule,

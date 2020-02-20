@@ -48,8 +48,11 @@ export class ViewCafeComponent implements OnInit {
   }
 
   deleteCafe(cafeId:number){
-    this.cafeService.deleteCafe(cafeId).subscribe();
-    this.loadAllCafe();
+    if(confirm("Are you Sure to delete cafe?")){
+      this.cafeService.deleteCafe(cafeId).subscribe();
+      this.loadAllCafe();
+    }
+    
   }
 
   searchByCafeId(){

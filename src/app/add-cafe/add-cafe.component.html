@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label>Enter Owner Name</label><br>
                         <input type="text" class="form-control" [(ngModel)]=cafe.owner #owner=ngModel name="owner"
-                            placeholder="Eg. Akash Verma" required>
+                            placeholder="Eg. Akash Verma" pattern="[a-zA-Z][a-zA-Z ]+" required>
                         <span *ngIf="owner.touched && owner.invalid " class="alert-danger">
                             Invalid Name!</span>
                     </div>
